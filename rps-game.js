@@ -20,13 +20,19 @@ const computerSelection = getComputerChoice();
 function playRound (string) {
     const playerSelection = string.toLowerCase();
     const getBothSelections = playerSelection + computerSelection;
+    const playerSelectionUpperCase = `${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}`;
+    const computerSelectionUpperCase = `${computerSelection[0].toUpperCase()}${computerSelection.slice(1)}`
+
+    console.log(playerSelectionUpperCase);
+    console.log(computerSelectionUpperCase);
     console.log(getBothSelections);
+
     if (getBothSelections === 'rockrock' || getBothSelections === 'paperpaper' || getBothSelections === 'scissorsscissors') {
         return 'It\'s a draw!'
     } else if (getBothSelections === 'paperrock' || getBothSelections === 'scissorspaper' || getBothSelections === 'rockscissors') {
-        return 'You Win!';
+        return `You Win! ${playerSelectionUpperCase} Beats ${computerSelectionUpperCase}!`;
     } else {
-        return 'You Lose!';
+        return `You Lose! ${computerSelectionUpperCase} Beats ${playerSelectionUpperCase}!`;
     }
 }
 

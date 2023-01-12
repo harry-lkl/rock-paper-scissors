@@ -6,10 +6,10 @@
 
 const choice = ['rock', 'paper', 'scissors']
 const getComputerChoice = () => choice[Math.floor(Math.random() * choice.length)];
-const computerSelection = getComputerChoice();
 // console.log(typeof computerSelection);
 // console.log(computerSelection());
 
+let runningCount = 0;
 
 // prompt player to select 'rock', 'paper', or 'scissors' and store it in a variable playerSelection
 // make it case insensitive, aka make input lower caps
@@ -19,24 +19,42 @@ const computerSelection = getComputerChoice();
 // return a string that says something like "You Lose! Paper beats Rock"
 function playRound (string) {
     const playerSelection = string.toLowerCase();
+    const computerSelection = getComputerChoice();
     const getBothSelections = playerSelection + computerSelection;
     const playerSelectionUpperCase = `${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}`;
     const computerSelectionUpperCase = `${computerSelection[0].toUpperCase()}${computerSelection.slice(1)}`
 
     console.log(playerSelectionUpperCase);
     console.log(computerSelectionUpperCase);
-    console.log(getBothSelections);
+    // console.log(getBothSelections);
 
     if (getBothSelections === 'rockrock' || getBothSelections === 'paperpaper' || getBothSelections === 'scissorsscissors') {
-        return 'It\'s a draw!'
+        console.log(`It's a draw!`);
     } else if (getBothSelections === 'paperrock' || getBothSelections === 'scissorspaper' || getBothSelections === 'rockscissors') {
-        return `You Win! ${playerSelectionUpperCase} Beats ${computerSelectionUpperCase}!`;
+        runningCount++;
+        console.log(`You Win! ${playerSelectionUpperCase} Beats ${computerSelectionUpperCase}!`);
     } else {
-        return `You Lose! ${computerSelectionUpperCase} Beats ${playerSelectionUpperCase}!`;
+        runningCount--;
+        console.log(`You Lose! ${computerSelectionUpperCase} Beats ${playerSelectionUpperCase}!`);
     }
 }
 
-console.log(playRound('papeR'));
+console.log(runningCount);
 
+function game () {
+    for (let i = 0; i < 5; i++) {
+        let getPlayerPrompt = window.prompt(`What's your move?`);
+        playRound(getPlayerPrompt);
+        // console.log(runningCount);
+    }
+    if (runningCount === 0) {
+        return `Match Over, It's a Draw!`;
+    } else if (runningCount < 0) {
+        return `Match Over, You Win!`;
+    } else {
+        return `Match Over, You Lose!`;
+    }
+}
 
 // store result in a variable
+// 12/1: added running count, start at step 6

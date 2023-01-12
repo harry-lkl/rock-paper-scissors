@@ -12,9 +12,11 @@ const computerSelection = getComputerChoice();
 
 
 // prompt player to select 'rock', 'paper', or 'scissors' and store it in a variable playerSelection
-// make it case insensitive
+// make it case insensitive, aka make input lower caps
 
 
-// compare the two selections with win conditions 
+// compare the two selections with win conditions
+    // pass both choices into an array
+    // compare win conditions: ['rock','rock'] etc returns 'It's a draw!'
 
 // return a string that says something like "You Lose! Paper beats Rock"

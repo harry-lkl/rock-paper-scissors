@@ -5,10 +5,9 @@
     // store the selected string in the constant computerSelection
 
 const choice = ['rock', 'paper', 'scissors']
-getComputerChoice = () => choice[Math.floor(Math.random() * choice.length)];
-const computerSelection = getComputerChoice();
+const computerSelection = () => choice[Math.floor(Math.random() * choice.length)];
 // console.log(typeof computerSelection);
-// console.log(computerSelection);
+// console.log(computerSelection());
 
 
 // prompt player to select 'rock', 'paper', or 'scissors' and store it in a variable playerSelection

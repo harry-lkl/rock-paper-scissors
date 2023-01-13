@@ -41,8 +41,8 @@ function playRound (string) {
 }
 
 // need function to:
-// validate if player input is a string; if yes then proceed to toLowerCase and check if input is one of the moves :
-// if not prompt player to input a valid input
+// validate if player input is a string; if yes then proceed to toLowerCase and check if input is one of the moves
+// : if not prompt player to input a valid input
 // ^not neccessary if GUI
 
 
@@ -50,8 +50,8 @@ function playRound (string) {
 // use running count to determine the result of the match
 function game () {
     for (let i = 0; i < 5; i++) {
-        let getPlayerPrompt = window.prompt(`What's your move?`);
-        playRound(getPlayerPrompt);
+        let playerPrompt = window.prompt(`What's your move?`);
+        playRound(playerPrompt);
         // console.log(runningCount); 
     }
     if (runningCount === 0) {

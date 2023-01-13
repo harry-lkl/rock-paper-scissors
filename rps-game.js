@@ -10,6 +10,7 @@ const getComputerChoice = () => choice[Math.floor(Math.random() * choice.length)
 // console.log(computerSelection());
 
 let runningCount = 0;
+// draw is 0, player win is +1, computer win is -1
 
 // prompt player to select 'rock', 'paper', or 'scissors' and store it in a variable playerSelection
 // make it case insensitive, aka make input lower caps
@@ -20,7 +21,7 @@ let runningCount = 0;
 function playRound (string) {
     const playerSelection = string.toLowerCase();
     const computerSelection = getComputerChoice();
-    const getBothSelections = playerSelection + computerSelection;
+    const bothSelections = playerSelection + computerSelection;
     const playerSelectionUpperCase = `${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}`;
     const computerSelectionUpperCase = `${computerSelection[0].toUpperCase()}${computerSelection.slice(1)}`
 
@@ -28,9 +29,9 @@ function playRound (string) {
     console.log(computerSelectionUpperCase);
     // console.log(getBothSelections);
 
-    if (getBothSelections === 'rockrock' || getBothSelections === 'paperpaper' || getBothSelections === 'scissorsscissors') {
+    if (bothSelections === 'rockrock' || bothSelections === 'paperpaper' || bothSelections === 'scissorsscissors') {
         console.log(`It's a draw!`);
-    } else if (getBothSelections === 'paperrock' || getBothSelections === 'scissorspaper' || getBothSelections === 'rockscissors') {
+    } else if (bothSelections === 'paperrock' || bothSelections === 'scissorspaper' || bothSelections === 'rockscissors') {
         runningCount++;
         console.log(`You Win! ${playerSelectionUpperCase} Beats ${computerSelectionUpperCase}!`);
     } else {
@@ -39,22 +40,29 @@ function playRound (string) {
     }
 }
 
-console.log(runningCount);
+// need function to:
+// validate if player input is a string; if yes then proceed to toLowerCase and check if input is one of the moves :
+// if not prompt player to input a valid input
+// ^not neccessary if GUI
 
+
+// prompt player to input their move, then pass into play round, playes 5 games
+// use running count to determine the result of the match
 function game () {
     for (let i = 0; i < 5; i++) {
         let getPlayerPrompt = window.prompt(`What's your move?`);
         playRound(getPlayerPrompt);
-        // console.log(runningCount);
+        // console.log(runningCount); 
     }
     if (runningCount === 0) {
-        return `Match Over, It's a Draw!`;
+        console.log(`Match Over, It's a Draw!`);
+    } else if (runningCount > 0) {
+        console.log(`Match Over, You Win!`);
     } else if (runningCount < 0) {
-        return `Match Over, You Win!`;
+        console.log(`Match Over, You Lose!`);
     } else {
-        return `Match Over, You Lose!`;
+        console.log(`how did you get here?`);
     }
 }
 
-// store result in a variable
-// 12/1: added running count, start at step 6
+game();

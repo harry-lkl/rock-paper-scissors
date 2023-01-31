@@ -1,0 +1,61 @@
+html {
+    font-size: 10px;
+    background: url('./background.jpg') bottom center;
+    background-size: cover;
+    background-color: black;
+}
+  
+body,html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.gameBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, .choice, #roundInfo, #score, #message, #reset {
+    margin: 1rem;
+    font-size: 3.5rem;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    text-shadow: 0 0 .1rem white;
+}
+
+h1 {
+    font-size: 5rem;
+    padding: 1rem .5rem;
+}
+
+.choices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem .5rem;
+}
+
+.choice{
+    border: .4rem solid yellow;
+    border-radius: .5rem;
+    width: 25rem;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#reset {
+    border: .4rem solid red;
+    border-radius: .5rem;
+    width: 15rem;
+    font-size: 3rem;
+    padding: 1rem .5rem;
+}

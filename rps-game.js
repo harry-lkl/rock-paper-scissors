@@ -1,68 +1,67 @@
-// return a random choice from 'rock', 'paper', or 'scissors' and
-// store it in a variable computerSelection, name funtion getComputerChoice
-    // put 'rock', 'paper', 'scissors' into an array called choices
-    // generate a random number from 0, 1, 2, and use it to select one of the selections from choice
-    // store the selected string in the constant computerSelection
+// functions for a game of rock paper scissors
+let playerScore = 0;
+let computerScore = 0;
+let matchCount = 1;
+const gameLength = 5;
+const roundInfo = document.getElementById('roundInfo');
+const score = document.getElementById('score');
+const message = document.getElementById('message');
+message.textContent = `match 1 of ${gameLength}`;
 
-const choice = ['rock', 'paper', 'scissors']
-const getComputerChoice = () => choice[Math.floor(Math.random() * choice.length)];
-// console.log(typeof computerSelection);
-// console.log(computerSelection());
+function game(selection) {
+    if (matchCount > gameLength) {
+        return;
+    }
+    const bothSelections = playRound(selection);
+    scoreBoard(bothSelections);
+}
 
-let runningCount = 0;
-// draw is 0, player win is +1, computer win is -1
-
-// prompt player to select 'rock', 'paper', or 'scissors' and store it in a variable playerSelection
-// make it case insensitive, aka make input lower caps
-// pass choices into an array
-// compare the two selections with win conditions
-    // compare win conditions: ['rock','rock'] etc returns 'It's a Draw!'
-// return a string that says something like "You Lose! Paper beats Rock"
-function playRound (string) {
-    const playerSelection = string.toLowerCase();
+function playRound(playerSelection) {
+    const choice = ['Rock', 'Paper', 'Scissors']
+    const getComputerChoice = () => choice[Math.floor(Math.random() * choice.length)];
     const computerSelection = getComputerChoice();
-    const bothSelections = playerSelection + computerSelection;
-    const playerSelectionUpperCase = `${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}`;
-    const computerSelectionUpperCase = `${computerSelection[0].toUpperCase()}${computerSelection.slice(1)}`
+    const bothSelections = [playerSelection,computerSelection];
+    return bothSelections;
+}
 
-    console.log(playerSelectionUpperCase);
-    console.log(computerSelectionUpperCase);
-    // console.log(getBothSelections);
+function scoreBoard(bothSelectionsArr) {
+    const bothSelections = bothSelectionsArr[0] + bothSelectionsArr[1];
+    const playerSelection = bothSelectionsArr[0];
+    const computerSelection = bothSelectionsArr[1];
 
-    if (bothSelections === 'rockrock' || bothSelections === 'paperpaper' || bothSelections === 'scissorsscissors') {
-        console.log(`It's a draw!`);
-    } else if (bothSelections === 'paperrock' || bothSelections === 'scissorspaper' || bothSelections === 'rockscissors') {
-        runningCount++;
-        console.log(`You Win! ${playerSelectionUpperCase} Beats ${computerSelectionUpperCase}!`);
+    if (bothSelections === 'RockRock' || bothSelections === 'PaperPaper' || bothSelections === 'ScissorsScissors') {
+        roundInfo.textContent = `Computer played ${computerSelection}. It's a draw!`;
+    } else if (bothSelections === 'PaperRock' || bothSelections === 'ScissorsPaper' || bothSelections === 'RockScissors') {
+        playerScore++;
+        roundInfo.textContent = `Computer played ${computerSelection}. You Win!`;
     } else {
-        runningCount--;
-        console.log(`You Lose! ${computerSelectionUpperCase} Beats ${playerSelectionUpperCase}!`);
+        computerScore++;
+        roundInfo.textContent = `Computer played ${computerSelection}. You Lose!`;
+    }
+
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    matchCount++;
+    message.textContent = `match ${matchCount} of ${gameLength}`;
+
+
+    if (matchCount >= gameLength + 1) {
+        if (playerScore === computerScore) {
+            message.textContent =`Match over, it's a draw!`;
+        } else if (playerScore > computerScore) {
+            message.textContent =`Match over, you win!`;
+        } else if (playerScore < computerScore) {
+            message.textContent =`Match over, you lose!`;
+        } else {
+            message.textContent =`how did you get here?`;
+        }
     }
 }
 
-// need function to:
-// validate if player input is a string; if yes then proceed to toLowerCase and check if input is one of the moves
-// : if not prompt player to input a valid input
-// ^not neccessary if GUI
-
-
-// prompt player to input their move, then pass into play round, playes 5 games
-// use running count to determine the result of the match
-function game () {
-    for (let i = 0; i < 5; i++) {
-        let playerPrompt = window.prompt(`What's your move?`);
-        playRound(playerPrompt);
-        // console.log(runningCount); 
-    }
-    if (runningCount === 0) {
-        console.log(`Match Over, It's a Draw!`);
-    } else if (runningCount > 0) {
-        console.log(`Match Over, You Win!`);
-    } else if (runningCount < 0) {
-        console.log(`Match Over, You Lose!`);
-    } else {
-        console.log(`how did you get here?`);
-    }
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+    matchCount = 1;
+    roundInfo.textContent = `-`
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    message.textContent = `match 1 of ${gameLength}`;
 }
-
-game();
